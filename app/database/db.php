@@ -124,13 +124,13 @@ function update($table, $paramsData, $paramsWhere){
 }
 
 //DELETE request
-function delete($table, $paramsWhere){
+function deleteRow($table, $paramsWhere){
     global $pdo;
     $i = 0;
     $where = '';
     foreach($paramsWhere as $key => $value){
         if($i === 0){
-            $where = "WHERE " . $key . " = " . "'$value'";
+            $where = "WHERE " . $key . " = " . "$value";
         }else{
             $where = $where . " AND " . $key . " = " . "'$value'";
         }

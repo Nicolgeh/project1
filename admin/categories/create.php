@@ -1,6 +1,7 @@
 <?php
-//include '../../app/database/db.php';
-session_start();
+//
+//session_start();
+include '../../app/controllers/topics.php';
 ?>
 
 <!doctype html>
@@ -33,19 +34,7 @@ session_start();
 
     <div class="container">
         <div class="row">
-            <div class="sidebar col-3">
-                <ul>
-                    <li>
-                        <a href="../posts/index.php">Posts</a>
-                    </li>
-                    <li>
-                        <a href="../users/index.php">Users</a>
-                    </li>
-                    <li>
-                        <a href="../categories/index.php">Categories</a>
-                    </li>
-                </ul>
-            </div>
+        <?php include '../../assets/piece/sidebar-admin.php' ?>
 
             <div class="posts col-9">
                 <div class="button row">
@@ -54,29 +43,22 @@ session_start();
                     <a href="index.php" class="col-3 btn btn-warning">Manage categorie</a>
                 </div>
                 <div class="row title-table">
-                    <h2>Add post</h2>
+                    <h2>Add categorie</h2>
                 </div>
                 <div class="row add-post">
+                    <div class="err" style="color: red;">
+                        <?php echo $errMsg; ?>
+                    </div>
                     <form action="create.php" method="post">
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="Title" aria-label="Name state">
+                            <input name="name" value="<?= $name; ?>" type="text" class="form-control" placeholder="categorie" aria-label="Name categorie">
                         </div>
                         <div class="col">
                             <label for="content" class="form-label">Text</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="6"></textarea>
+                            <textarea name="description"  class="form-control" id="exampleFormControlTextarea1" rows="6"><?= $description; ?></textarea>
                         </div>
-                        <div class="input-group col">
-                            <input type="file" class="form-control" id="inputGroupFile02">
-                            <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                        </div>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                        </select>
                         <div class="col-12">
-                            <button class="btn btn-primary" type="submit">Save post</button>
+                            <button name="create-categorie" class="btn btn-primary" type="submit">Create categorie</button>
                         </div>
                     </form>
                 </div>

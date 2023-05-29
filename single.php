@@ -1,7 +1,8 @@
 <?php 
-    include 'app/database/db.php';
-?>
+    include 'path.php';
+    include_once 'app/controllers/topics.php';
 
+?>
 <!doctype html>
 <html lang="en">
 
@@ -39,39 +40,13 @@
         <div class="content row">
             <!--MAIN CONTENT-->
             <div class="main-content col-md-9 col-12">
-                <h2>TITLE</h2>
+                <h2><?= $posts[$_GET['id_post']]['title']; ?></h2>
                 <div class="single_post row">
                     <div class="img col-12">
                         <img src="assets/images/third_image_carousel.png" alt="main-content_1" class="img-thumbnail">
                     </div>
                     <div class="single_post_text col-12">
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-                            libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
-                            leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
-                            sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
-                            condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in
-                            turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
-                            neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi,
-                            tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-                            libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
-                            leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
-                            sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
-                            condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in
-                            turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
-                            neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi,
-                            tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
-                        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                            Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu
-                            libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend
-                            leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum
-                            sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt
-                            condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in
-                            turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor
-                            neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi,
-                            tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+                        <?= $posts[$_GET['id_post']]['content']; ?>
                     </div>
                 </div>
             </div>
@@ -84,18 +59,7 @@
                     </form>
                 </div>
 
-                <div class="section topics">
-                    <h3>Topics</h3>
-                    <ul>
-                        <li><a href="#">Poems</a></li>
-                        <li><a href="#">Quotes</a></li>
-                        <li><a href="#">Fiction</a></li>
-                        <li><a href="#">Biography</a></li>
-                        <li><a href="#">Motivation</a></li>
-                        <li><a href="#">Inspiration</a></li>
-                        <li><a href="#">Life Lessons</a></li>
-                    </ul>
-                </div>
+                <?php include 'assets/piece/sidebar.php'; ?>
 
             </div>
         </div>

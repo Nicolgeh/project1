@@ -1,5 +1,7 @@
 <?php 
-    include 'app/database/db.php';
+    include 'path.php';
+    include_once 'app/controllers/topics.php';
+
 ?>
 
 <!doctype html>
@@ -80,96 +82,23 @@
         <!--MAIN CONTENT-->
         <div class="main-content col-md-9 col-12">
             <h2>Latest news</h2>
+            <?php foreach($posts as $key => $value): ?>
             <div class="post row">
                 <div class="img col-12 col-md-4">
                     <img src="assets/images/third_image_carousel.png" alt="main-content_1" class="img-thumbnail">
                 </div>
                 <div class="post_text col-12 col-md-8">
                     <h3>
-                        <a href="/single.php">Funny state abount dynamic site</a>
+                        <a href="/single.php?id_post=<?= $value['id']; ?>"><?= $value['title']; ?></a>
                     </h3>
-                    <i class="far fa-user">Name Author</i>
-                    <i class="far fa-calendar">Mar 11, 2022</i>
+                    <i class="far fa-user"><?= selectOne('users', ['id' => $value['id_user']])['username']; ?></i>
+                    <i class="far fa-calendar"><?= $value['created_date']; ?></i>
                     <p class="prewiew-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet eros viverra felis mattis elementum. Nullam congue neque at est scelerisque, et hendrerit tellus euismod. 
+                        <?= $value['content']; ?>
                     </p>
                 </div>
             </div>
-            <div class="post row">
-                <div class="img col-12 col-md-4">
-                    <img src="assets/images/third_image_carousel.png" alt="main-content_2" class="img-thumbnail">
-                </div>
-                <div class="post_text col-12 col-md-8">
-                    <h3>
-                        <a href="/single.php">Funny state abount dynamic site</a>
-                    </h3>
-                    <i class="far fa-user">Name Author</i>
-                    <i class="far fa-calendar">Mar 11, 2022</i>
-                    <p class="prewiew-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet eros viverra felis mattis elementum. Nullam congue neque at est scelerisque, et hendrerit tellus euismod. 
-                    </p>
-                </div>
-            </div>
-            <div class="post row">
-                <div class="img col-12 col-md-4">
-                    <img src="assets/images/third_image_carousel.png" alt="main-content_2" class="img-thumbnail">
-                </div>
-                <div class="post_text col-12 col-md-8">
-                    <h3>
-                        <a href="/single.php">Funny state abount dynamic site</a>
-                    </h3>
-                    <i class="far fa-user">Name Author</i>
-                    <i class="far fa-calendar">Mar 11, 2022</i>
-                    <p class="prewiew-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet eros viverra felis mattis elementum. Nullam congue neque at est scelerisque, et hendrerit tellus euismod. 
-                    </p>
-                </div>
-            </div>
-            <div class="post row">
-                <div class="img col-12 col-md-4">
-                    <img src="assets/images/third_image_carousel.png" alt="main-content_2" class="img-thumbnail">
-                </div>
-                <div class="post_text col-12 col-md-8">
-                    <h3>
-                        <a href="/single.php">Funny state abount dynamic site</a>
-                    </h3>
-                    <i class="far fa-user">Name Author</i>
-                    <i class="far fa-calendar">Mar 11, 2022</i>
-                    <p class="prewiew-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet eros viverra felis mattis elementum. Nullam congue neque at est scelerisque, et hendrerit tellus euismod. 
-                    </p>
-                </div>
-            </div>
-            <div class="post row">
-                <div class="img col-12 col-md-4">
-                    <img src="assets/images/third_image_carousel.png" alt="main-content_2" class="img-thumbnail">
-                </div>
-                <div class="post_text col-12 col-md-8">
-                    <h3>
-                        <a href="/single.php">Funny state abount dynamic site</a>
-                    </h3>
-                    <i class="far fa-user">Name Author</i>
-                    <i class="far fa-calendar">Mar 11, 2022</i>
-                    <p class="prewiew-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet eros viverra felis mattis elementum. Nullam congue neque at est scelerisque, et hendrerit tellus euismod. 
-                    </p>
-                </div>
-            </div>
-            <div class="post row">
-                <div class="img col-12 col-md-4">
-                    <img src="assets/images/third_image_carousel.png" alt="main-content_2" class="img-thumbnail">
-                </div>
-                <div class="post_text col-12 col-md-8">
-                    <h3>
-                        <a href="/single.php">Funny state abount dynamic site</a>
-                    </h3>
-                    <i class="far fa-user">Name Author</i>
-                    <i class="far fa-calendar">Mar 11, 2022</i>
-                    <p class="prewiew-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sit amet eros viverra felis mattis elementum. Nullam congue neque at est scelerisque, et hendrerit tellus euismod. 
-                    </p>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
         <!--Sidebar content-->
         <div class="sidebar col-md-3 col-12">
@@ -180,18 +109,7 @@
                 </form>
             </div>
 
-            <div class="section topics">
-                <h3>Topics</h3>
-                <ul>
-                    <li><a href="#">Poems</a></li>
-                    <li><a href="#">Quotes</a></li>
-                    <li><a href="#">Fiction</a></li>
-                    <li><a href="#">Biography</a></li>
-                    <li><a href="#">Motivation</a></li>
-                    <li><a href="#">Inspiration</a></li>
-                    <li><a href="#">Life Lessons</a></li>
-                </ul>
-            </div>
+            <?php include 'assets/piece/sidebar.php'; ?>
 
         </div>
     </div>

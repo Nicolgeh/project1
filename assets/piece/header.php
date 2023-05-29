@@ -22,7 +22,7 @@
                                 </a>
                                 <ul>
                                     <?php if($_SESSION['admin']): ?>
-                                        <li><a href="../admin/admin.php">Admin</a></li>
+                                        <li><a href="../admin/posts/index.php">Admin</a></li>
                                     <?php endif ?>
                                     <li><a href="../logout.php">Exit</a></li>
                                 </ul>

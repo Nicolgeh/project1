@@ -1,6 +1,7 @@
 <?php
+//
+//session_start();
 include '../../app/controllers/topics.php';
-
 ?>
 
 <!doctype html>
@@ -33,7 +34,7 @@ include '../../app/controllers/topics.php';
 
     <div class="container">
         <div class="row">
-                <?php include '../../assets/piece/sidebar-admin.php' ?>
+        <?php include '../../assets/piece/sidebar-admin.php' ?>
 
             <div class="posts col-9">
                 <div class="button row">
@@ -42,19 +43,26 @@ include '../../app/controllers/topics.php';
                     <a href="index.php" class="col-3 btn btn-warning">Manage categorie</a>
                 </div>
                 <div class="row title-table">
-                    <h2>Manage categories</h2>
-                    <div class="col-1">ID</div>
-                    <div class="col-5">Title</div>
-                    <div class="col-4">Manage</div>
+                    <h2>Update categorie</h2>
                 </div>
-                <?php foreach($topics as $key => $topic): ?>
-                <div class="row post">
-                    <div class="id col-1"><?=$key +1; ?></div>
-                    <div class="title col-5"><?= $topic['name']; ?></div>
-                    <div class="edit col-2"><a href="edit.php?id=<?=$topic['id']; ?>">Edit</a></div>
-                    <div class="del col-2"><a href="edit.php?del_id=<?=$topic['id']; ?>">Delete</a></div>
+                <div class="row add-post">
+                    <div class="err" style="color: red;">
+                        <?php echo $errMsg; ?>
+                    </div>
+                    <form action="edit.php" method="post">
+                        <input type="hidden" name="id" value="<?=$id;?>">
+                        <div class="col">
+                            <input name="name" value="<?= $name; ?>" type="text" class="form-control" placeholder="categorie" aria-label="Name categorie">
+                        </div>
+                        <div class="col">
+                            <label for="content" class="form-label">Text</label>
+                            <textarea name="description"  class="form-control" id="exampleFormControlTextarea1" rows="6"><?= $description; ?></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button name="update-categorie" class="btn btn-primary" type="submit">Update categorie</button>
+                        </div>
+                    </form>
                 </div>
-                <?php endforeach; ?>
             </div>
         </div>
     </div>

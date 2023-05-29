@@ -1,6 +1,6 @@
 <?php
 //include '../../app/database/db.php';
-session_start();
+include '../../app/controllers/posts.php';
 ?>
 
 <!doctype html>
@@ -33,19 +33,7 @@ session_start();
 
     <div class="container">
         <div class="row">
-            <div class="sidebar col-3">
-                <ul>
-                    <li>
-                        <a href="../posts/index.php">Posts</a>
-                    </li>
-                    <li>
-                        <a href="../users/index.php">Users</a>
-                    </li>
-                    <li>
-                        <a href="../categories/index.php">Categories</a>
-                    </li>
-                </ul>
-            </div>
+        <?php include '../../assets/piece/sidebar-admin.php' ?>
 
             <div class="posts col-9">
                 <div class="button row">
@@ -60,27 +48,15 @@ session_start();
                     <div class="col-2">Author</div>
                     <div class="col-4">Manage</div>
                 </div>
+                <?php foreach($posts as $key => $value) : ?>
                 <div class="row post">
-                    <div class="id col-1">1</div>
-                    <div class="title col-5">first state</div>
-                    <div class="author col-2">me</div>
-                    <div class="edit col-2"><a href="#">Edit</a></div>
-                    <div class="del col-2"><a href="#">Delete</a></div>
+                    <div class="id col-1"><?= $key + 1; ?></div>
+                    <div class="title col-5"><?= $value['title']; ?></div>
+                    <div class="author col-2"><?= selectOne('users', ['id' => $value['id_user']])['username']; ?></div>
+                    <div class="edit col-2"><a href="edit.php?id=<?=$value['id']; ?>">Edit</a></div>
+                    <div class="del col-2"><a href="edit.php?del_id=<?=$value['id']; ?>">Delete</a></div>
                 </div>
-                <div class="row post">
-                    <div class="id col-1">1</div>
-                    <div class="title col-5">first state</div>
-                    <div class="author col-2">me</div>
-                    <div class="edit col-2"><a href="#">Edit</a></div>
-                    <div class="del col-2"><a href="#">Delete</a></div>
-                </div>
-                <div class="row post">
-                    <div class="id col-1">1</div>
-                    <div class="title col-5">first state</div>
-                    <div class="author col-2">me</div>
-                    <div class="edit col-2"><a href="#">Edit</a></div>
-                    <div class="del col-2"><a href="#">Delete</a></div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>

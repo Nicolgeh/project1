@@ -1,4 +1,6 @@
 <?php
+//
+//session_start();
 include '../../app/controllers/usersShow.php';
 ?>
 
@@ -36,27 +38,28 @@ include '../../app/controllers/usersShow.php';
 
             <div class="posts col-9">
                 <div class="button row">
-                    <a href="create.php" class="col-2 btn btn-success">Add user</a>
+                    <a href="create.php" class="col-3 btn btn-success">Add categorie</a>
                     <span class="col-1"></span>
-                    <a href="index.php" class="col-3 btn btn-warning">Manage users</a>
+                    <a href="index.php" class="col-3 btn btn-warning">Manage categorie</a>
                 </div>
                 <div class="row title-table">
-                    <h2>Add user</h2>
+                    <h2>Update categorie</h2>
                 </div>
-                <div class="err">
-                        <?= $errMsg; ?>
-                    </div>
                 <div class="row add-post">
+                    <div class="err" style="color: red;">
+                        <?php echo $errMsg; ?>
+                    </div>
                     <form action="create.php" method="post">
+                    <input type="hidden" name="id" value="<?= $id;?>">
                         <div class="col">
                             <label for="exampleInputEmail1">Your login</label>
-                            <input name="login" type="text" required class="form-control" aria-describedby="emailHelp" placeholder="Enter your login">
+                            <input name="login" value="<?= $username; ?>" type="text" required class="form-control" aria-describedby="emailHelp" placeholder="Enter your login">
                             <small id="emailHelp" class="form-text text-muted"></small>
                         </div>
 
                         <div class="col">
                             <label for="exampleInputEmail1">Email address</label>
-                            <input name="email" type="email" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                            <input name="email" value="<?= $email; ?>" type="email" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
 
@@ -74,7 +77,7 @@ include '../../app/controllers/usersShow.php';
                             <option value="1">Admin</option>
                         </select>
                         <div class="col-12">
-                            <button name="button-reg" class="btn btn-primary" type="submit">Create user</button>
+                            <button name="update-user" class="btn btn-primary" type="submit">Create user</button>
                         </div>
                     </form>
                 </div>

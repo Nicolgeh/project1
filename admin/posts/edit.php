@@ -1,5 +1,7 @@
 <?php
-include '../../app/controllers/usersShow.php';
+//
+//session_start();
+include '../../app/controllers/posts.php';
 ?>
 
 <!doctype html>
@@ -36,45 +38,38 @@ include '../../app/controllers/usersShow.php';
 
             <div class="posts col-9">
                 <div class="button row">
-                    <a href="create.php" class="col-2 btn btn-success">Add user</a>
+                    <a href="create.php" class="col-2 btn btn-success">Add post</a>
                     <span class="col-1"></span>
-                    <a href="index.php" class="col-3 btn btn-warning">Manage users</a>
+                    <a href="index.php" class="col-3 btn btn-warning">Manage post</a>
                 </div>
                 <div class="row title-table">
-                    <h2>Add user</h2>
+                    <h2>Add post</h2>
                 </div>
-                <div class="err">
+                <div class="row add-post">
+                    <div class="err">
                         <?= $errMsg; ?>
                     </div>
-                <div class="row add-post">
                     <form action="create.php" method="post">
-                        <div class="col">
-                            <label for="exampleInputEmail1">Your login</label>
-                            <input name="login" type="text" required class="form-control" aria-describedby="emailHelp" placeholder="Enter your login">
-                            <small id="emailHelp" class="form-text text-muted"></small>
+                        <input type="hidden" name="id" value="<?=$id?>">
+                        <div class="col mb-4">
+                            <input name="title" value="<?= $title ?>" type="text" class="form-control" placeholder="Title" aria-label="Name state">
                         </div>
-
-                        <div class="col">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input name="email" type="email" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        <div class="col mb-4">
+                            <label for="editor"  class="form-label">Text</label>
+                            <textarea name="content" id="editor" class="form-control" id="exampleFormControlTextarea1" rows="6"><?= $content ?></textarea>
                         </div>
-
-                        <div class="col">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input name="password" required type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                        <div class="input-group col mb-4">
+                            <input name="img" value="<?= $img ?>" type="file" class="form-control" id="inputGroupFile02">
+                            <label class="input-group-text" for="inputGroupFile02">Upload</label>
                         </div>
-                        <div class="col">
-                            <label for="exampleInputPassword1">Repeat password</label>
-                            <input name="repeat_password" type="password" class="form-control" id="exampleInputPassword2" placeholder="Repeat password">
-                        </div>
-                        <select name="admin" class="form-select" aria-label="Default select example">
-                            <option selected>Select Role</option>
-                            <option value="0">User</option>
-                            <option value="1">Admin</option>
+                        <select name="status" class="form-select mb-4" aria-label="Default select example">
+                            <option selected value="<?= $status ?>"></option>
+                            <?php foreach($topics as $key => $value): ?>
+                            <option value="<?= $value['id']; ?>"><?= $value['name']; ?></option>
+                            <?php endforeach; ?>
                         </select>
                         <div class="col-12">
-                            <button name="button-reg" class="btn btn-primary" type="submit">Create user</button>
+                            <button name="update-post" class="btn btn-primary" type="submit">Save post</button>
                         </div>
                     </form>
                 </div>
@@ -84,5 +79,7 @@ include '../../app/controllers/usersShow.php';
 
     <!--Footer-->
     <?php include_once('../../assets/piece/footer.php'); ?>
-
+    <!-- Visual editor to text area -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/38.0.1/classic/ckeditor.js"></script>
+    <script src="../../assets/js/scripts.js"></script>
 </html>
